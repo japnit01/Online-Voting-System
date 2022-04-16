@@ -12,7 +12,7 @@ def client_thread(connection):
 
     #verify voter details
     log = (data.decode()).split(' ')
-    log[0] = int(log[0])
+    # log[0] = int(log[0])
     if(df.verify(log[0],log[1])):                                #3 Authenticate
         if(df.isEligible(log[0])):
             print('Voter Logged in... ID:'+str(log[0]))

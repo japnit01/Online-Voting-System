@@ -6,7 +6,7 @@ path = Path("database")
 
 def count_reset():
     df=pd.read_csv(path/'voterList.csv')
-    df=df[['voter_id','Name','Gender','Zone','City','Passw','hasVoted']]
+    df=df[['voter_id','Name','Gender','Passw','hasVoted']]
     for index, row in df.iterrows():
         df['hasVoted'].iloc[index]=0
     df.to_csv(path/'voterList.csv')
@@ -19,8 +19,8 @@ def count_reset():
 
 
 def reset_voter_list():
-    df = pd.DataFrame(columns=['voter_id','Name','Gender','Zone','City','Passw','hasVoted'])
-    df=df[['voter_id','Name','Gender','Zone','City','Passw','hasVoted']]
+    df = pd.DataFrame(columns=['voter_id','Name','Gender','Passw','hasVoted'])
+    df=df[['voter_id','Name','Gender','Passw','hasVoted']]
     df.to_csv(path/'voterList.csv')
 
 def reset_cand_list():
@@ -40,7 +40,7 @@ def verify(vid,passw):
 
 def isEligible(vid):
     df=pd.read_csv(path/'voterList.csv')
-    df=df[['voter_id','Name','Gender','Zone','City','Passw','hasVoted']]
+    df=df[['voter_id','Name','Gender','Passw','hasVoted']]
     for index, row in df.iterrows():
         if df['voter_id'].iloc[index]==vid and df['hasVoted'].iloc[index]==0:
             return True
@@ -58,7 +58,7 @@ def vote_update(st,vid):
         df.to_csv (path/'cand_list.csv')
 
         df=pd.read_csv(path/'voterList.csv')
-        df=df[['voter_id','Name','Gender','Zone','City','Passw','hasVoted']]
+        df=df[['voter_id','Name','Gender','Passw','hasVoted']]
         for index, row in df.iterrows():
             if df['voter_id'].iloc[index]==vid:
                 df['hasVoted'].iloc[index]=1
@@ -79,26 +79,26 @@ def show_result():
     return v_cnt
 
 
-def taking_data_voter(name,gender,zone,city,passw):
+def taking_data_voter(vid,name,gender,passw):
     df=pd.read_csv(path/'voterList.csv')
-    df=df[['voter_id','Name','Gender','Zone','City','Passw','hasVoted']]
+    df=df[['voter_id','Name','Gender','Passw','hasVoted']]
     row,col=df.shape
     if row==0:
-        vid = 10001
+        # vid = 10001
         df = pd.DataFrame({"voter_id":[vid],
                     "Name":[name],
                     "Gender":[gender],
-                    "Zone":[zone],
-                    "City":[city],
+                    # "Zone":[zone],
+                    # "City":[city],
                     "Passw":[passw],
                     "hasVoted":[0]},)
     else:
-        vid=df['voter_id'].iloc[-1]+1
+        # vid=df['voter_id'].iloc[-1]+1
         df1 = pd.DataFrame({"voter_id":[vid],
                     "Name":[name],
                     "Gender":[gender],
-                    "Zone":[zone],
-                    "City":[city],
+                    # "Zone":[zone],
+                    # "City":[city],
                     "Passw":[passw],
                     "hasVoted":[0]},)
 
